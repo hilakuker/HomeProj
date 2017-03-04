@@ -1,0 +1,32 @@
+@import "assets/stylesheets/bootstrap";
+$padding:20px;
+
+%padding-top{
+    padding-top:$padding;
+}
+
+%padding-side {
+    padding-left:$padding;
+    padding-right:$padding;
+}
+
+.container{
+    @extend %padding-top;
+    .panel {
+        @extend %padding-top;
+            .row {
+                @extend %padding-side;
+            }
+            .table {
+                @extend %padding-top;
+            }
+    }
+}
+
+.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+    border-color: #78FA89;
+}

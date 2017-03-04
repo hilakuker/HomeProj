@@ -1,4 +1,3 @@
-//jshint strict: false
 module.exports = function(config) {
   config.set({
 
@@ -8,8 +7,8 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'components/**/*.js',
-      'view*/**/*.js'
+      'js/*.js',
+      "../e2e-tests/scenarios.js"
     ],
 
     autoWatch: true,
@@ -32,3 +31,4 @@ module.exports = function(config) {
 
   });
 };
+

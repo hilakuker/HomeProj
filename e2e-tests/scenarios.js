@@ -2,46 +2,55 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
-describe('my app', function () {
-  beforeEach(module('myApp'));
+describe('test email app', function () {
+  beforeEach(module('emailHomePage'));
 
-  describe('view1', function () {
+  var $controller;
 
-    beforeEach(function () {
-      browser.get('index.html#!/view1');
-    });
+  beforeEach(inject(function (_$controller_) {
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $controller = _$controller_;
+  }));
 
-    beforeEach(inject(function (_$controller_) {
-      // The injector unwraps the underscores (_) from around the parameter names when matching
-      $controller = _$controller_;
-    }));
 
-    describe('adding and removing mail', function () {
-      it('add new email address', function () {
-        var emailList = {};
-        var controller = $controller('GeneralController', {});
-        expect(controller.emailList.length).toEqual(0);
-        controller.addEmail("hila@hhh.com");
-        expect(controller.emailList.length).toEqual(1);
-        controller.deleteEmail(0);
-        expect(controller.emailList.length).toEqual(0);
-      });
+  describe('removing mail', function () {
+    it('remove email address', function () {
+      var emailList = {};
+      var controller = $controller('GeneralController', {});
+      controller.addEmail("hila@hhh.com");
+      controller.deleteEmail(0);
+      expect(controller.emailList.length).toEqual(0);
+      expect(controller.logList.length).toEqual(2);
     });
   });
-});
 
-
-describe('view2', function () {
-
-  beforeEach(function () {
-    browser.get('index.html#!/view2');
+  describe('adding mail', function () {
+    it('add new email address', function () {
+      var emailList = {};
+      var controller = $controller('GeneralController', {});
+      expect(controller.emailList.length).toEqual(0);
+      expect(controller.logList.length).toEqual(0);
+      controller.addEmail("hila@hhh.com");
+      expect(controller.emailList.length).toEqual(1);
+      expect(controller.logList.length).toEqual(1);
+    });
   });
 
-
-  it('should render view2 when user navigates to /view2', function () {
-    expect(element.all(by.css('[ng-view] p')).first().getText()).
-      toMatch(/partial for view 2/);
+  describe('checking logs', function () {
+    it('check if log writes', function () {
+      var emailList = {};
+      var controller = $controller('GeneralController', {});
+      controller.addEmail("hila@hhh.com");
+      var logsLength = controller.logList.length;
+      expect(controller.logList[logsLength - 1].message
+        .includes("New email has been added"))
+        .toEqual(true);
+      controller.deleteEmail(0);
+      logsLength = controller.logList.length;
+      expect(controller.logList[logsLength - 1].message
+        .includes("Email has been deleted"))
+        .toEqual(true);
+    });
   });
+});
 
-});
-});

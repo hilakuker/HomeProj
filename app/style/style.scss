@@ -1,32 +1,33 @@
 @import "assets/stylesheets/bootstrap";
 $padding:20px;
+$invalid-color: #FA787E;
+$valid-color: #78FA89;
 
-%padding-top{
+@mixin padding-top{
     padding-top:$padding;
 }
 
-%padding-side {
-    padding-left:$padding;
-    padding-right:$padding;
+@mixin padding-side {
+    padding: inherit $padding inherit $padding;
 }
 
 .container{
-    @extend %padding-top;
+    @include padding-top;
     .panel {
-        @extend %padding-top;
+        @include padding-top;
             .row {
-                @extend %padding-side;
+                @include padding-side;
             }
             .table {
-                @extend %padding-top;
+                @include padding-top;
             }
     }
 }
 
 .ng-invalid.ng-dirty {
-    border-color: #FA787E;
+    border-color: $invalid-color;
 }
 
 .ng-valid.ng-dirty {
-    border-color: #78FA89;
+    border-color: $valid-color;
 }

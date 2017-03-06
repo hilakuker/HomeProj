@@ -8,7 +8,8 @@ $valid-color: #78FA89;
 }
 
 @mixin padding-side {
-    padding: inherit $padding inherit $padding;
+    padding-left: $padding;
+    padding-right: $padding;
 }
 
 .container{

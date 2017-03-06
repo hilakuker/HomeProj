@@ -5811,7 +5811,8 @@ button.close {
   .container .panel {
     padding-top: 20px; }
     .container .panel .row {
-      padding: inherit 20px inherit 20px; }
+      padding-left: 20px;
+      padding-right: 20px; }
     .container .panel .table {
       padding-top: 20px; }
 
